@@ -91,7 +91,7 @@ Create procedure spReturnBoat
 as         
 Begin     
 
-	if exists(select 1 from tblBoatDetails where boatNumber = @boatNumber and isnull(IsAvailable,'') ='Y')
+	if exists(select 1 from tblBoatDetails where boatNumber = @boatNumber and isnull(IsAvailable,'') ='N')
 	begin
 
 		select @price =  DATEDIFF(hh, rentedDate, getdate()) * B.hourlyRate, @renttime = A.rentedDate

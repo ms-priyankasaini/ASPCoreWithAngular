@@ -44,16 +44,18 @@ namespace ASPCoreWithAngular.Controllers
             return objboat.GetReturnBoats();
         }
 
+        
+
         [HttpPut]
-        [Route("RentBoat")]
-        public int EditBoat([FromBody] int boatno, [FromBody]  string custname)
+        [Route("RentBoat/{boatno}/{custname}")]
+        public int EditBoat([FromRoute]int boatno, [FromRoute] string custname)
         {
             return objboat.UpdateBoatRecord(boatno, custname);
         }
 
         [HttpPut]
-        [Route("ReturnBoat")]
-        public ApiReturnObj ReturBoat([FromBody] int boatno)
+        [Route("ReturnBoat/{boatno}")]
+        public ApiReturnObj ReturBoat([FromRoute] int boatno)
         {
             return objboat.ReturnBoat(boatno);
         }

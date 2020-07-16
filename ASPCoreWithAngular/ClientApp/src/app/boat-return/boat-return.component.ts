@@ -35,8 +35,8 @@ export class BoatReturnComponent implements OnInit {
 
     this._boatService.ReturnBoat(this.boatReturnForm.get('boatnumber').value)
       .subscribe((response: apireturnobj) => {
-        
-        alert('Boat is returned successfully! ');
+
+        alert('Boat is returned successfully! Boat rent price :' + response.price + ' ' + 'Boat RentDate :' + response.rentdate);
         this._router.navigate(['/']);
       }, error => {
           alert('Error Occured during returning boat :' + error._body);

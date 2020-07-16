@@ -147,24 +147,27 @@ namespace ASPCoreWithAngular.DataAccess
                     
                     cmd.Parameters.AddWithValue("@boatNumber", boatno);
 
-                    SqlParameter price = new SqlParameter("@price", SqlDbType.Int)
+                    SqlParameter price = new SqlParameter("@price", SqlDbType.Decimal)
                     {
                         Direction = ParameterDirection.Output
                     };
                     cmd.Parameters.Add(price);
                     
-                    SqlParameter renttime = new SqlParameter("@renttime", SqlDbType.Int)
+                    SqlParameter renttime = new SqlParameter("@renttime", SqlDbType.DateTime)
                     {
                         Direction = ParameterDirection.Output
                     };
                     cmd.Parameters.Add(renttime);
 
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        rentprice = Convert.ToDecimal(price.Value.ToString());
+                        rentdate = Convert.ToDateTime(renttime.Value.ToString());
+                    }
                     con.Close();
 
-                    rentprice = Convert.ToDecimal(price.Value.ToString());
-                    rentdate = Convert.ToDateTime(renttime.Value.ToString());
+                   
 
                 }
                 return new ApiReturnObj (){price = rentprice, rentDate= rentdate };

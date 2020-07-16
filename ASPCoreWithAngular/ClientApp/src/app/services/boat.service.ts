@@ -40,11 +40,8 @@ export class BoatService {
   }
 
   RentBoatDetails(boatno: number, custname: string) {
-
-    return this._http.put(this.boatAppUrl + 'RentBoat', JSON.stringify({
-      boatno: boatno,
-      custname: custname
-    }))
+    var data = { 'boatno': boatno, 'custname': custname };
+    return this._http.put(this.boatAppUrl + 'RentBoat/' + boatno + '/' + custname,'')
       .pipe(map(
         response => {
           return response;
@@ -53,7 +50,7 @@ export class BoatService {
 
   ReturnBoat(boatno: number) {
 
-    return this._http.put(this.boatAppUrl + 'ReturnBoat', boatno)
+    return this._http.put(this.boatAppUrl + 'ReturnBoat/'+ boatno,'')
       .pipe(map(
         response => {
           return response;
