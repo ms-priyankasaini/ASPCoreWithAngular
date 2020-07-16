@@ -160,15 +160,12 @@ namespace ASPCoreWithAngular.DataAccess
                     cmd.Parameters.Add(renttime);
 
                     con.Open();
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        rentprice = Convert.ToDecimal(price.Value.ToString());
-                        rentdate = Convert.ToDateTime(renttime.Value.ToString());
-                    }
+                    cmd.ExecuteNonQuery();
+                    
+                    rentprice = Convert.ToDecimal(price.Value.ToString());
+                    rentdate = Convert.ToDateTime(renttime.Value.ToString());
+                    
                     con.Close();
-
-                   
-
                 }
                 return new ApiReturnObj (){price = rentprice, rentDate= rentdate };
             }
