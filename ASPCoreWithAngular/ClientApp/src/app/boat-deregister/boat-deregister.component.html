@@ -1,0 +1,26 @@
+<h1>Deregister Boat</h1>
+<hr />
+
+<form [formGroup]="boatDeleteForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+
+  <div class="form-group row">
+    <label class="control-label col-md-12" for="BoatNumber">Boat Number</label>
+    <div class="col-md-4">
+      <select class="form-control" data-val="true" formControlName="boatnumber">
+        <option value="">--Select Boat Number--</option>
+        <option *ngFor="let boatno of boatList" value={{boatno}}>
+          {{boatno}}
+        </option>
+      </select>
+    </div>
+    <span class="text-danger" *ngIf="boatnumber?.invalid && formDir.submitted">
+      Boat Number is required.
+    </span>
+  </div>
+
+  <hr />
+  <div class="form-group">
+    <button type="submit" class=" btn btn-primary">Save</button>
+    <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+</form>
